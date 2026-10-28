@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- إعدادات التجاوب الشامل لكل الأجهزة (iOS, Android, Tablets, Desktop) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBC School - المنصة الرقمية</title>
     <!-- Google Fonts Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -77,6 +77,17 @@
             animation: floatSlow 4s ease-in-out infinite;
         }
 
+        .national-banner {
+            background: linear-gradient(110deg, rgba(255,253,250,.98), rgba(255,240,223,.98));
+            border-bottom: 1px solid rgba(249,202,163,.75);
+        }
+        .national-banner .flag-accent {
+            background: linear-gradient(to left, #d82027 0 33%, #fff 33% 66%, #16834a 66% 100%);
+        }
+        .hero-title-mark { display:inline-block; width:54px; height:4px; border-radius:999px; background:linear-gradient(90deg,#f59e5e,#ec7825); }
+        .feature-chip { border:1px solid rgba(249,202,163,.75); background:rgba(255,255,255,.72); }
+        @media (prefers-reduced-motion: reduce) { .floating { animation:none; } *, *::before, *::after { scroll-behavior:auto !important; transition-duration:.01ms !important; } }
+
         /* تحسين التمرير لجميع الأجهزة */
         ::-webkit-scrollbar {
             width: 6px;
@@ -113,17 +124,17 @@
             <nav class="hidden md:flex items-center gap-6 lg:gap-8">
                 <a href="#" class="text-brand-900 font-bold hover:text-brand-500 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:w-full after:h-0.5 after:bg-brand-500 after:rounded-full" data-i18n="home">الصفحة الرئيسية</a>
                 <a href="#" onclick="openModal('rulesModal')" class="text-brand-800 font-semibold hover:text-brand-500 transition-colors" data-i18n="rules">القانون الداخلي للمؤسسة</a>
-                <a href="https://www.bbcschool-dz.com/" target="_blank" class="text-brand-800 font-semibold hover:text-brand-500 transition-colors flex items-center gap-1.5" data-i18n="about">
+                <a href="https://www.bbcschool-dz.com/" target="_blank" rel="noopener noreferrer" class="text-brand-800 font-semibold hover:text-brand-500 transition-colors flex items-center gap-1.5" data-i18n="about">
                     <span>من نحن</span>
                     <i class="fas fa-external-link-alt text-xs opacity-70"></i>
                 </a>
 
                 <!-- أيقونات التواصل الاجتماعي -->
                 <div class="flex items-center gap-2 lg:gap-3 border-r border-brand-200 pr-4 lg:pr-6">
-                    <a href="https://www.instagram.com/bbcschoolalgeria?stkn=Nmczcmk3dzV2NTlq" target="_blank" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all shadow-sm" title="Instagram">
+                    <a href="https://www.instagram.com/bbcschoolalgeria?stkn=Nmczcmk3dzV2NTlq" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all shadow-sm" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://youtube.com/@bbcschoolbateau4260?si=SeiuVZDZZFBLIWDC" target="_blank" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all shadow-sm" title="YouTube">
+                    <a href="https://youtube.com/@bbcschoolbateau4260?si=SeiuVZDZZFBLIWDC" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all shadow-sm" title="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -143,7 +154,7 @@
                     <option value="ar">AR</option>
                     <option value="en">EN</option>
                 </select>
-                <button onclick="toggleMobileMenu()" class="w-10 h-10 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center text-lg focus:outline-none active:scale-95 transition-transform" aria-label="القائمة">
+                <button onclick="toggleMobileMenu()" aria-expanded="false" aria-controls="mobileMenu" class="w-10 h-10 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center text-lg focus:outline-none active:scale-95 transition-transform" aria-label="القائمة">
                     <i id="menuIcon" class="fas fa-bars"></i>
                 </button>
             </div>
@@ -153,14 +164,28 @@
         <div id="mobileMenu" class="hidden md:hidden bg-white/98 backdrop-blur-xl border-b border-brand-200 px-6 py-5 space-y-4 shadow-xl transition-all">
             <a href="#" class="block text-brand-900 font-bold py-2 border-b border-brand-100" data-i18n="home">الصفحة الرئيسية</a>
             <a href="#" onclick="openModal('rulesModal'); toggleMobileMenu();" class="block text-brand-800 font-semibold py-2 border-b border-brand-100" data-i18n="rules">القانون الداخلي للمؤسسة</a>
-            <a href="https://www.bbcschool-dz.com/" target="_blank" class="block text-brand-800 font-semibold py-2 border-b border-brand-100" data-i18n="about">من نحن</a>
+            <a href="https://www.bbcschool-dz.com/" target="_blank" rel="noopener noreferrer" class="block text-brand-800 font-semibold py-2 border-b border-brand-100" data-i18n="about">من نحن</a>
             <div class="flex items-center gap-4 pt-2">
                 <span class="text-xs text-brand-700 font-bold" data-i18n="socials">تابعنا على:</span>
-                <a href="https://www.instagram.com/bbcschoolalgeria?stkn=Nmczcmk3dzV2NTlq" target="_blank" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@bbcschoolbateau4260?si=SeiuVZDZZFBLIWDC" target="_blank" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/bbcschoolalgeria?stkn=Nmczcmk3dzV2NTlq" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@bbcschoolbateau4260?si=SeiuVZDZZFBLIWDC" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </header>
+
+    <!-- شريط مؤقت لذكرى أول نوفمبر: يظهر تلقائيًا خلال فترة المناسبة فقط -->
+    <section id="novemberBanner" class="national-banner hidden w-full relative z-20" aria-label="ذكرى أول نوفمبر">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-center gap-3 sm:gap-4 text-center">
+            <span class="flag-accent w-1.5 h-10 rounded-full shadow-sm flex-shrink-0" aria-hidden="true"></span>
+            <div class="min-w-0">
+                <p class="font-black text-sm sm:text-base text-brand-900" data-i18n="novemberTitle">ذكرى أول نوفمبر 1954</p>
+                <p class="text-xs sm:text-sm text-brand-700" data-i18n="novemberSubtitle">المجد والخلود لشهدائنا الأبرار</p>
+            </div>
+            <button type="button" onclick="dismissNovemberBanner()" class="mr-auto rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center text-brand-700 hover:bg-brand-100 focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="إغلاق الشريط" title="إغلاق">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </section>
 
     <!-- القسم الرئيسي (Hero Section) متجاوب مع التابلت والهواتف -->
     <main class="flex-grow relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 flex flex-col items-center justify-center">
@@ -182,16 +207,22 @@
             <p class="text-base sm:text-lg lg:text-xl text-brand-800 font-medium max-w-2xl mx-auto leading-relaxed px-2" data-i18n="heroSubtitle">
                 تعلّم، اكتشف، وراجع دروسك بطريقة ممتعة وتفاعلية.
             </p>
+            <div class="flex justify-center my-5" aria-hidden="true"><span class="hero-title-mark"></span></div>
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4">
+                <span class="feature-chip inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs sm:text-sm font-bold text-brand-800"><i class="fas fa-book-open text-brand-500" aria-hidden="true"></i><span data-i18n="featureLessons">دروس منظمة</span></span>
+                <span class="feature-chip inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs sm:text-sm font-bold text-brand-800"><i class="fas fa-lightbulb text-brand-500" aria-hidden="true"></i><span data-i18n="featureEasy">فهم أسهل</span></span>
+                <span class="feature-chip inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs sm:text-sm font-bold text-brand-800"><i class="fas fa-gamepad text-brand-500" aria-hidden="true"></i><span data-i18n="featureInteractive">تعلّم تفاعلي</span></span>
+            </div>
         </div>
 
         <!-- الأقسام الرئيسية (بطاقتان: تتوزع عمودياً على الموبايل وأفقياً على التابلت والديسكتوب) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-4xl mx-auto relative z-10 px-2 sm:px-0">
             
             <!-- بطاقة المتوسط -->
-            <a href="pages/middle-school.html" class="group relative bg-white hover:bg-cream-50 rounded-3xl p-6 sm:p-8 border border-brand-200 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center overflow-hidden hover:-translate-y-1.5 active:scale-[0.98]">
+            <a href="pages/middle-school.html" class="group relative bg-white hover:bg-cream-50 rounded-3xl p-6 sm:p-8 border border-brand-200 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center overflow-hidden hover:-translate-y-1.5 active:scale-[0.98] sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-xl">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-amber-100/50 rounded-full blur-2xl group-hover:bg-amber-200/60 transition-colors"></div>
                 <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-amber-400 to-brand-500 text-white flex items-center justify-center text-2xl sm:text-3xl shadow-lg shadow-brand-500/25 mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-child"></i>
+                    <i class="fas fa-book-open"></i>
                 </div>
                 <h3 class="text-xl sm:text-2xl font-black text-brand-900 mb-2 sm:mb-3 group-hover:text-brand-500 transition-colors" data-i18n="primaryBtn">دروسي للمتوسط</h3>
                 <p class="text-xs sm:text-sm text-brand-800/80 mb-6 font-medium" data-i18n="primaryDesc">مناهج مبسطة، تمارين تفاعلية، وقصص تعليمية مشوقة .</p>
@@ -213,7 +244,7 @@
             </div>
             <div class="flex items-center gap-6 text-xs sm:text-sm text-brand-300">
                 <a href="#" onclick="openModal('rulesModal')" class="hover:text-white transition-colors" data-i18n="rules">القانون الداخلي</a>
-                <a href="https://www.bbcschool-dz.com/" target="_blank" class="hover:text-white transition-colors" data-i18n="about">من نحن</a>
+                <a href="https://www.bbcschool-dz.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" data-i18n="about">من نحن</a>
             </div>
         </div>
     </footer>
@@ -256,10 +287,15 @@
                 about: "من نحن",
                 socials: "تابعنا على:",
                 badgeText: "مرحباً بكم في بيئتكم التعليمية الذكية",
+                novemberTitle: "ذكرى أول نوفمبر 1954",
+                novemberSubtitle: "المجد والخلود لشهدائنا الأبرار",
+                featureLessons: "دروس منظمة",
+                featureEasy: "فهم أسهل",
+                featureInteractive: "تعلّم تفاعلي",
                 mainTitle: "رحلتك نحو المعرفة تبدأ هنا",
                 heroSubtitle: "تعلّم، اكتشف، وراجع دروسك بطريقة ممتعة وتفاعلية.",
-                primaryBtn: "دروسي للابتدائي",
-                primaryDesc: "مناهج مبسطة، تمارين تفاعلية، وقصص تعليمية مشوقة للأطفال.",
+                primaryBtn: "دروسي للمتوسط",
+                primaryDesc: "دروس وملخصات وتمارين تساعد تلاميذ المتوسط على الفهم والمراجعة.",
                 teacherBtn: "فضاء الأساتذة",
                 teacherDesc: "أدوات تنظيمية، مراجع بيداغوجية، ومنصة تواصل خاصة بالهيئة التعليمية.",
                 exploreBtn: "استكشف القسم",
@@ -280,10 +316,15 @@
                 about: "About Us",
                 socials: "Follow Us:",
                 badgeText: "Welcome to your smart educational environment",
+                novemberTitle: "1 November 1954 Anniversary",
+                novemberSubtitle: "Glory and eternity to our righteous martyrs",
+                featureLessons: "Organized lessons",
+                featureEasy: "Easier understanding",
+                featureInteractive: "Interactive learning",
                 mainTitle: "Your learning journey starts here",
                 heroSubtitle: "Learn, explore, and review your lessons in a fun and interactive way.",
-                primaryBtn: "Primary Lessons",
-                primaryDesc: "Simplified curricula, interactive exercises, and engaging educational stories for kids.",
+                primaryBtn: "Middle School Lessons",
+                primaryDesc: "Lessons, summaries, and exercises to help middle-school students learn and review.",
                 teacherBtn: "Teachers Space",
                 teacherDesc: "Organizational tools, pedagogical references, and a communication platform for teachers.",
                 exploreBtn: "Explore Section",
@@ -344,9 +385,27 @@
             }
         }
 
+        function dismissNovemberBanner() {
+            const banner = document.getElementById('novemberBanner');
+            banner.classList.add('hidden');
+            try { sessionStorage.setItem('bbc_november_banner_dismissed', '1'); } catch (e) {}
+        }
+
+        function updateNovemberBanner() {
+            const banner = document.getElementById('novemberBanner');
+            const now = new Date();
+            const month = now.getMonth(); // 0 = January
+            const day = now.getDate();
+            const withinAnniversaryPeriod = (month === 9 && day >= 20) || (month === 10 && day <= 3);
+            let dismissed = false;
+            try { dismissed = sessionStorage.getItem('bbc_november_banner_dismissed') === '1'; } catch (e) {}
+            if (withinAnniversaryPeriod && !dismissed) banner.classList.remove('hidden');
+        }
+
         window.onload = function() {
             const savedLang = localStorage.getItem('bbc_lang') || 'ar';
             changeLanguage(savedLang);
+            updateNovemberBanner();
         }
     </script>
 </body>
